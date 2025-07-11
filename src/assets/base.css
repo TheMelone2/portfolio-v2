@@ -1,0 +1,14 @@
+:root {
+    --color-brand-green: #00ff6a;
+    --color-brand-blue: #00bfff;
+    --color-brand-red: #ff0000;
+    --color-brand-yellow: #ffff00;
+    --color-brand-purple: #800080;
+    --color-brand-orange: #ff8c00;
+    --color-brand-pink: #ff69b4;
+    --color-brand-black: #000000;
+    --color-brand-white: #ffffff;
+
+    --color-brand-background: #121613;
+    --color-brand-bg-header: #191b18;
+}
