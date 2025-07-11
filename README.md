@@ -24,9 +24,8 @@ This is my NEW personal portfolio, designed to showcase my work, projects, skill
 ```
 
 /
-├── public/              # Favicon
+├── public/              # Favicon, images, and static assets
 ├── src/
-│   ├── assets/          # Images, icons, logos
 │   ├── components/      # UI components like SkillGrid, Testimonials
 │   ├── data/            # Static data (projects, work, etc.)
 │   ├── layouts/         # Reusable layout shells (BaseLayout)
