@@ -1,0 +1,99 @@
+---
+interface WorkItem {
+  company: string;
+  logo?: string;
+  brandIcon?: string;
+  role: string;
+  dates: string;
+  location?: string;
+  volunteering?: boolean;
+}
+
+interface GroupedWork {
+  company: string;
+  logo?: string;
+  brandIcon?: string;
+  roles: { role: string; dates: string; volunteering?: boolean }[];
+  location?: string;
+}
+
+// Brand color map
+function getBrandColor(icon: string): string {
+  const map: Record<string, string> = {
+    discord: '#5865F2',
+    github: '#171515',
+    twitter: '#1DA1F2',
+    facebook: '#1877F2',
+    google: '#DB4437',
+    slack: '#611f69',
+    linkedin: '#0077b5',
+  };
+  return map[icon.toLowerCase()] || 'var(--melon)';
+}
+
+const workFiles = import.meta.glob('../data/work.md', { eager: true }) as Record<string, { frontmatter: { work: WorkItem[] } }>;
+const workData = Object.values(workFiles)[0]?.frontmatter?.work;
+const workList: WorkItem[] = Array.isArray(workData) ? workData : [];
+
+const groupedWork = workList.reduce((acc, item) => {
+  const found = acc.find(w => w.company === item.company);
+  if (found) {
+    found.roles.push({ role: item.role, dates: item.dates, volunteering: item.volunteering });
+    if (!found.location && item.location) found.location = item.location;
+  } else {
+    acc.push({
+      company: item.company,
+      logo: item.logo,
+      brandIcon: item.brandIcon,
+      location: item.location,
+      roles: [{ role: item.role, dates: item.dates, volunteering: item.volunteering }],
+    });
+  }
+  return acc;
+}, [] as GroupedWork[]);
+---
+
+<ul class="timeline">
+  {groupedWork.map(item => {
+    const brandColor = item.brandIcon ? getBrandColor(item.brandIcon) : undefined;
+    return (
+      <li class="timeline-item">
+        {item.logo ? (
+          <img
+            src={item.logo}
+            alt={`${item.company} logo`}
+            class="timeline-logo"
+            loading="lazy"
+          />
+        ) : item.brandIcon ? (
+          <i
+            class={`fab fa-${item.brandIcon} timeline-logo brand-icon`}
+            style={`color: ${brandColor};`}
+            aria-hidden="true"
+            title={item.company}
+          />
+        ) : (
+          <div class="timeline-logo placeholder-logo">{item.company[0]}</div>
+        )}
+
+        <div>
+          <h4 class="timeline-company accent">{item.company}</h4>
+          {item.roles.map(({ role, dates, volunteering }, i) => (
+            <div class="timeline-role-block">
+              <div class="timeline-role">
+                {role}
+                {volunteering && <span class="volunteering-tag">Volunteering</span>}
+              </div>
+              <div class="timeline-dates">{dates}</div>
+            </div>
+          ))}
+          {item.location && (
+            <div class="timeline-location">
+              <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i>{item.location}
+            </div>
+          )}
+        </div>
+      </li>
+    );
+  })}
+</ul>

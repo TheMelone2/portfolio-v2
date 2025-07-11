@@ -1,0 +1,168 @@
+---
+// Full self-contained component
+const recommendations = [
+  {
+    quote: `Jan is easily one of the most professional, detail-oriented, and thoughtful people I have ever encountered in the Discord ecosystem. I had the pleasure of working alongside him in our shared mission to build Discord Games Labs and various other communities that scale, and I can confidently say it could not have happened without Jan. 
+
+He built out foundational bot systems, server workflows, and moderation tools which enable me to lead and elevated the experience for every user in our server. He did so with an inate sense of care, structure, and above all, kindness. There is a quiet leadership he brings into every virtual space he is in which others notice, and before long, there was not a member who did not know of his actions!
+
+His contributions have had a lasting impact on DGL's culture and project.
+If you're looking for someone to build meaningful work with, Jan is who you NEED working beside you.`,
+    name: 'Valentina C.-R',
+    title: 'Community Manager, Discord',
+    companyLogo: '/src/assets/discord-logo.png'
+  },
+  {
+    quote: `I had the pleasure of working with Jan at EasySystems and I can say that he is both professional and friendly in every way.
+He brings a high level of engagement to every task as well as impressive technical skills.
+
+Jan is reliable, motivated, and always aiming to contribute to the team’s and project's success. I would definitely recommend him for any kind of collaboration - he’s a great enrichment for any project or team.`,
+    name: 'Niklas S.',
+    title: 'CEO, EasySystems',
+    companyLogo: '/src/assets/easysystems-logo.png'
+  }
+];
+const recommendationsJSON = JSON.stringify(recommendations);
+---
+<div class="recommendations-carousel">
+  <blockquote class="recommendation-quote" id="quote"></blockquote>
+
+  <button class="show-more-btn" id="toggleMore" hidden>Show more</button>
+
+  <div class="recommendation-meta">
+    <div class="recommendation-person">
+      <span class="recommendation-name accent" id="name"></span>
+      <span class="recommendation-title" id="title"></span>
+      <img id="logo" alt="Company logo" class="company-logo" hidden />
+    </div>
+    <a id="linkedInBtn" href="#" class="linkedin-link" target="_blank" rel="noopener" hidden>
+      View on LinkedIn ↗
+    </a>
+  </div>
+
+  <div class="recommendation-dots">
+    {recommendations.map((_, i) => (
+      <button
+        class={`recommendation-dot${i === 0 ? ' active' : ''}`}
+        aria-label={`Show recommendation ${i + 1}`}
+        data-idx={i}
+      ></button>
+    ))}
+  </div>
+</div>
+
+<script type="application/json" id="recommendations-data" set:html={recommendationsJSON}></script>
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    const recommendations = JSON.parse(document.getElementById("recommendations-data").textContent.trim());
+    let current = 0;
+    const isMobile = window.matchMedia("(max-width: 600px)").matches;
+    const maxPreviewLength = 300;
+
+    const quoteEl = document.getElementById('quote');
+    const nameEl = document.getElementById('name');
+    const titleEl = document.getElementById('title');
+    const toggleMoreBtn = document.getElementById('toggleMore');
+    const linkedInBtn = document.getElementById('linkedInBtn');
+    const logoImg = document.getElementById('logo');
+    const dots = document.querySelectorAll('.recommendation-dot');
+
+    let isExpanded = !isMobile;
+
+    function updateQuoteText(quote) {
+      const isLong = quote.length > maxPreviewLength;
+      toggleMoreBtn.hidden = !isLong || !isMobile;
+
+      if (isExpanded || !isLong) {
+        quoteEl.textContent = quote;
+        toggleMoreBtn.textContent = 'Show less';
+        quoteEl.classList.remove('collapsed');
+      } else {
+        quoteEl.textContent = quote.slice(0, maxPreviewLength) + '...';
+        toggleMoreBtn.textContent = 'Show more';
+        quoteEl.classList.add('collapsed');
+      }
+    }
+
+    function show(index) {
+      const rec = recommendations[index];
+      if (!rec) return;
+
+      quoteEl.classList.remove('fade');
+      void quoteEl.offsetWidth;
+
+      isExpanded = !isMobile;
+      updateQuoteText(rec.quote);
+      nameEl.textContent = rec.name;
+      titleEl.textContent = rec.title;
+
+      if (rec.linkedInURL) {
+        linkedInBtn.href = rec.linkedInURL;
+        linkedInBtn.hidden = false;
+      } else {
+        linkedInBtn.hidden = true;
+      }
+
+      if (rec.companyLogo) {
+        logoImg.src = rec.companyLogo;
+        logoImg.hidden = false;
+      } else {
+        logoImg.hidden = true;
+      }
+
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+      quoteEl.classList.add('fade');
+    }
+
+    toggleMoreBtn.addEventListener('click', () => {
+      isExpanded = !isExpanded;
+      updateQuoteText(recommendations[current].quote);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        clearInterval(autoSlide);
+        show(i);
+        startAutoplay();
+      });
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const container = document.querySelector('.recommendations-carousel');
+
+    container.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    container.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      const threshold = 50;
+      if (touchEndX < touchStartX - threshold) next();
+      else if (touchEndX > touchStartX + threshold) prev();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+
+    function next() {
+      const nextIndex = (current + 1) % recommendations.length;
+      show(nextIndex);
+    }
+
+    function prev() {
+      const prevIndex = (current - 1 + recommendations.length) % recommendations.length;
+      show(prevIndex);
+    }
+
+    let autoSlide;
+    function startAutoplay() {
+      autoSlide = setInterval(() => next(), 8000);
+    }
+
+    show(current);
+    startAutoplay();
+  });
+</script>

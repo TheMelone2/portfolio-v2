@@ -1,0 +1,200 @@
+<div class="header" role="banner" aria-label="Primary Navigation">
+  <nav class="nav-container" role="navigation" aria-label="Main menu">
+    <a href="/" class="logo">the.melon</a>
+
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-wrapper" id="navMenu">
+      <ul class="nav-list nav-list-internal">
+        <li><a href="../#experience" tabindex="0">Work</a></li>
+        <li><a href="/resume" tabindex="0">Resume</a></li>
+      </ul>
+      <ul class="nav-list nav-list-external">
+        <li><a href="https://github.com/TheMelone2/portfolio-v2" tabindex="0">View Source Code</a></li>
+        <li><a href="mailto:hi@themelon.live" tabindex="0">Contact me</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<script type="module">
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navWrapper = document.getElementById('navMenu');
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navWrapper.classList.toggle('active');
+
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!expanded));
+  });
+</script>
+
+<style>
+ :root {
+  --header-bg: #18181b;
+  --accent-color: #A3E635;
+  --text-color: #f3f4f6;
+  --header-height: 80px;
+}
+
+.header {
+  background: var(--header-bg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  height: var(--header-height);
+  margin: 0 auto;
+  position: relative;
+}
+
+.logo {
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-decoration: none;
+  text-transform: lowercase;
+  user-select: none;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle .bar {
+  height: 3px;
+  width: 100%;
+  background: var(--text-color);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Navigation menu */
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  margin-right: 1.5rem;
+}
+
+.nav-list li:last-child {
+  margin-right: 0;
+}
+
+.nav-list a {
+  color: var(--text-color);
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-list a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.nav-list a:hover,
+.nav-list a:focus-visible {
+  color: var(--accent-color);
+  outline: none;
+}
+
+.nav-list a:hover::after,
+.nav-list a:focus-visible::after {
+  width: 100%;
+}
+
+.nav-list-external a {
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+.nav-list-external a:hover {
+  opacity: 1;
+}
+
+/* ===== Mobile styles ===== */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-wrapper {
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background: var(--header-bg);
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    transform: translateY(-200%);
+    transition: transform 0.3s ease-in-out;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-wrapper.active {
+    transform: translateY(0);
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-list li {
+    margin: 0.5rem 0;
+  }
+
+  .menu-toggle.active .bar:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+}
+
+</style>

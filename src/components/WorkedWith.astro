@@ -1,0 +1,108 @@
+---
+interface Company {
+  name: string;
+  logo: string;
+  brandColor: string;
+}
+
+const companies: Company[] = [
+  {
+    name: "Discord",
+    logo: "../src/assets/discord-logo.png",
+    brandColor: "#5865F2",
+  },
+  {
+    name: "Mercedes-Benz",
+    logo: "../src/assets/mercedes-benz-logo.png",
+    brandColor: "#CDCFD1"
+  },
+  {
+    name: "Team17",
+    logo: "../src/assets/t17-logo.png",
+    brandColor: "#7317ba",
+  }
+];
+---
+
+<section class="worked-with">
+  <div class="companies-grid">
+    {companies.map(company => (
+      <div class="company-item" style={`--brand-color: ${company.brandColor}`}>
+        <img src={company.logo} alt={company.name} loading="lazy" />
+        <span class="company-name">{company.name}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .worked-with {
+    margin: 4rem auto;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .companies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .company-item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: var(--bg-card);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+
+  .company-item:hover {
+    transform: scale(1.08);
+  }
+
+  .company-item img {
+    max-width: 60%;
+    max-height: 60%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+  }
+
+  .company-name {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--brand-color);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.4rem 0;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.3s ease;
+  }
+
+  .company-item:hover .company-name {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 600px) {
+    .company-item {
+      width: 80px;
+      height: 80px;
+    }
+
+    .company-name {
+      font-size: 0.7rem;
+    }
+  }
+</style>

@@ -1,0 +1,145 @@
+---
+const correctPassword = 'melon123'; // This is obv a joke password, not secure
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+---
+
+<style>
+  .resume-page {
+    min-height: 100vh;
+    background: var(--bg-dark, #121212);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: var(--text-primary, #eee);
+    font-family: system-ui, sans-serif;
+  }
+
+  .password-card,
+  .resume-container {
+    background: var(--bg-card, #222);
+    border-radius: 1.5rem;
+    border: 1px solid var(--shadow-light, #444);
+    box-shadow:
+      0 8px 32px var(--shadow-dark, rgba(0,0,0,0.8)),
+      inset 0 0 15px rgba(163, 230, 53, 0.12);
+    backdrop-filter: blur(24px);
+    padding: 3rem;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+  }
+
+  input[type="password"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--shadow-light, #444);
+    background: transparent;
+    color: var(--text-primary, #eee);
+    margin-top: 1.5rem;
+    outline-offset: 2px;
+  }
+
+  input[type="password"]::placeholder {
+    color: var(--text-muted, #888);
+  }
+
+  button {
+    margin-top: 1.5rem;
+    background: var(--melon, #A3E635);
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 700;
+    color: #111;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+
+  button:hover,
+  button:focus-visible {
+    background: #8fcf3c;
+    outline: none;
+  }
+
+  .error {
+    margin-top: 1rem;
+    color: #f87171;
+    font-weight: 600;
+  }
+
+  .resume-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 0 24px rgba(163, 230, 53, 0.5);
+  }
+
+  .fun-hint {
+    margin-top: 1rem;
+    font-style: italic;
+    color: var(--text-muted, #888);
+    user-select: none;
+  }
+</style>
+
+<BaseLayout title="Resume Vault">
+  <Header />
+    <div class="resume-page">
+        <form id="password-form" class="password-card" aria-label="Password form">
+            <h2>🔒 Super Secret Resume Vault</h2>
+            <p>Only the melon-powered can enter 🍈</p>
+            <input
+            type="password"
+            id="password-input"
+            placeholder="Guess the magic melon password..."
+            aria-label="Password"
+            required
+            autofocus
+            autocomplete="off"
+            />
+            <button type="submit">Unlock 🍈</button>
+            <div id="error-message" class="error" role="alert" style="display:none;"></div>
+            <div class="fun-hint">Hint: It's the fruitiest password you've ever seen.</div>
+        </form>
+
+        <div id="resume-container" class="resume-container" style="display:none;" tabindex="0" aria-label="Resume image">
+            <h2>🥳 Congratulations! You've unlocked the resume!</h2>
+            <p>Just kidding... here is no resume.</p>
+            </p>
+        </div>
+    </div>
+    <Footer />
+</BaseLayout>
+
+<script>
+    const correctPassword = 'melon123';
+    const form = document.getElementById('password-form');
+    const input = document.getElementById('password-input') as HTMLInputElement;
+    const errorMessage = document.getElementById('error-message');
+    const resumeContainer = document.getElementById('resume-container');
+
+    if (form && input && errorMessage && resumeContainer) {
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        if (input.value === correctPassword) {
+        errorMessage.style.display = 'none';
+        form.style.display = 'none';
+        resumeContainer.style.display = 'block';
+        } else {
+        errorMessage.textContent = 'Oops! That password is as wrong as a watermelon in a melon patch.';
+        errorMessage.style.display = 'block';
+        input.value = '';
+        input.focus();
+        }
+    });
+    }
+
+</script>

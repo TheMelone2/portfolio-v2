@@ -1,0 +1,56 @@
+---
+const skillCategories = [
+  {
+    label: 'Languages',
+    skills: [
+      { name: 'JavaScript', level: 'Advanced', icon: 'javascript', color: '#f7df1e' },
+      { name: 'TypeScript', level: 'Advanced', icon: 'typescript', color: '#3178c6' },
+      { name: 'Python', level: 'Intermediate', icon: 'python', color: '#306998' },
+      { name: 'Prolog', level: 'Intermediate', icon: 'prolog', color: '#ffcc00', fallback: '🧠'},
+      { name: 'Java', level: 'Beginner', icon: 'java', color: '#007396' },
+      { name: 'Pascal', level: 'Beginner', icon: 'pascal', color: '#b0ceff', fallback: '📘'}
+    ]
+  },
+  {
+    label: 'Frameworks & Libraries',
+    skills: [
+      { name: 'Astro', level: 'Expert', icon: 'astro', color: '#ff5d01' },
+      { name: 'React', level: 'Advanced', icon: 'react', color: '#61dafb' },
+      { name: 'Tailwind CSS', level: 'Advanced', icon: 'tailwind', color: '#38bdf8', fallback: '🌬️' }
+    ]
+  },
+  {
+    label: 'Tools & Design',
+    skills: [
+      { name: 'UI/UX (Figma)', level: 'Intermediate', icon: 'figma', color: '#a259ff' },
+      { name: 'Notion', level: 'Intermediate', icon: 'notion', color: '#ffffff', fallback: '📓' },
+      { name: 'Git', level: 'Advanced', icon: 'git', color: '#f05032' },
+      { name: 'GitHub', level: 'Advanced', icon: 'github', color: '#fafafa' }
+    ]
+  }
+];
+---
+<section class="skills">
+  {skillCategories.map(category => (
+    <div class="skill-category">
+      <h3 class="category-label">{category.label}</h3>
+      <div class="skills-grid">
+        {category.skills.map(skill => (
+          <div class="skill-card" style={`--brand: ${skill.color ?? '#A3E635'}`}>
+            <div class="skill-icon">
+              {skill.icon && !skill.fallback ? (
+                <i class={`devicon-${skill.icon}-plain`} aria-hidden="true" />
+              ) : (
+                <span class="fallback-icon" title={skill.name}>{skill.fallback}</span>
+              )}
+            </div>
+            <div class="skill-info">
+              <span class="skill-name">{skill.name}</span>
+              <span class="skill-level">{skill.level}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+</section>

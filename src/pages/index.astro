@@ -1,11 +1,50 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectsIsland from '../components/ProjectsIsland.astro';
+import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+import SkillsGrid from '../components/SkillsGrid.astro';
+import RecommendationsCarousel from '../components/RecommendationsCarousel.astro';
+import WorkedWith from '../components/WorkedWith.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import '../styles/global.css'; 
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="en">
+  <body>
+    <BaseLayout title="themelon's portfolio">
+      <Header />
+      <section id="about" class="about-section reveal">
+        <div class="profile-circle">
+          <img src="/src/assets/melonboy.png" alt="themelon profile" class="profile-image" loading="lazy" />
+        </div>
+        <div>
+          <h2 class="section-title accent">About Me</h2>
+          <p class="section-desc">Hi! I'm melon (he/him), a passionate web developer & designer focused on building accessible, performant, and beautiful web experiences. I love working with modern frameworks and creating delightful UIs.</p>
+        </div>
+      </section>
+      <section id="projects" class="projects-section reveal">
+        <h2 class="section-title accent">Projects</h2>
+        <ProjectsIsland />
+      </section>
+      <section id="experience" class="experience-section reveal">
+        <h2 class="section-title accent">Work Experience</h2>
+        <ExperienceTimeline />
+      </section>
+      <section id="skills" class="skills-section reveal">
+        <h2 class="section-title accent">Skills</h2>
+        <SkillsGrid />
+      </section>
+      <section id="recommendations" class="recommendations-section reveal">
+        <h2 class="section-title accent">Recommendations</h2>
+        <RecommendationsCarousel />
+      </section>
+      <section id="worked-with" class="worked-with-section reveal">
+        <h2 class="section-title accent">Companies I've Worked With</h2>
+        <WorkedWith />
+      </section>
+      <Footer />
+    </BaseLayout>
+  </body>
+</html>

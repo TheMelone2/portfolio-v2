@@ -1,0 +1,36 @@
+---
+import "../styles/global.css";
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#A3E635" />
+    <link rel="icon" href="/favicon.svg" />
+    <title>{Astro.props.title || 'Portfolio'}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/lime-icons@1.0.1/css/lime-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+    <script>
+      const glow = document.createElement('div');
+      glow.classList.add('cursor-glow');
+      document.body.appendChild(glow);
+
+      document.addEventListener('mousemove', e => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+      });
+
+    </script>
+  </body>
+</html>

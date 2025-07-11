@@ -1,0 +1,35 @@
+---
+const { title, description, tech, links } = Astro.props;
+---
+
+<article class="project-card" role="region" aria-labelledby="project-title">
+  <h3 id="project-title" class="project-title accent">{title}</h3>
+  <p class="project-desc">{description}</p>
+
+  {tech && tech.length > 0 && (
+    <ul class="project-tech-list" aria-label="Technologies used">
+      {tech.map((t: string) => (
+        <li class="project-tech">{t}</li>
+      ))}
+    </ul>
+  )}
+
+  {links && links.length > 0 && (
+    <nav class="project-links" aria-label="Project links">
+      {links.map((link: { url: string | URL | null | undefined; label: unknown }) => {
+        const labelStr = typeof link.label === "string" ? link.label : String(link.label);
+        return (
+          <a
+            href={link.url ?? "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-link accent"
+            aria-label={labelStr}
+          >
+            {labelStr}
+          </a>
+        );
+      })}
+    </nav>
+  )}
+</article>

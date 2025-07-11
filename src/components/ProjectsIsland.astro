@@ -1,0 +1,27 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import yaml from 'js-yaml';
+
+const projectFiles = import.meta.glob('../data/projects.md', { eager: true, as: 'raw' });
+
+let projectList: any[] = [];
+
+
+for (const fileContent of Object.values(projectFiles)) {
+  const content = fileContent.split('---').slice(2).join('---').trim();
+  const parsed = yaml.load(content);
+  if (Array.isArray(parsed)) {
+    projectList = parsed;
+  }
+}
+
+if (!Array.isArray(projectList)) {
+  projectList = [];
+}
+---
+
+<div class="projects-grid">
+  {projectList.map(project => (
+    <ProjectCard {...project} />
+  ))}
+</div>
