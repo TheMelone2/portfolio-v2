@@ -22,15 +22,16 @@ import "../styles/global.css";
     <div class="blob blob2"></div>
     <div class="blob blob3"></div>
     <script>
-      const glow = document.createElement('div');
-      glow.classList.add('cursor-glow');
-      document.body.appendChild(glow);
+      if (!('ontouchstart' in window)) {
+  const glow = document.createElement("div");
+  glow.classList.add("cursor-glow");
+  document.body.appendChild(glow);
 
-      document.addEventListener('mousemove', e => {
-        glow.style.left = e.clientX + 'px';
-        glow.style.top = e.clientY + 'px';
-      });
-
+  document.addEventListener("mousemove", (e) => {
+    glow.style.left = `${e.clientX}px`;
+    glow.style.top = `${e.clientY}px`;
+  });
+}
     </script>
   </body>
 </html>
