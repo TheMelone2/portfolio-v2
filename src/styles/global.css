@@ -864,3 +864,28 @@ section:nth-child(4) {
     transform: translateY(0);
   }
 }
+
+/* Click watermelons */
+#wm-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 9999;
+}
+
+.watermelon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  user-select: none;
+  opacity: 1;
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.watermelon.fade-out {
+  opacity: 0;
+  transform: translate(var(--dx, 0), var(--dy, 0)) scale(0.5);
+}
