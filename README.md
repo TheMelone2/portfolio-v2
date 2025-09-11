@@ -2,7 +2,7 @@
 
 This is my NEW personal portfolio, designed to showcase my work, projects, skills, and professional background. Built with [Astro](https://astro.build), it features a clean, fast, and mobile-friendly UI with thoughtful animations, accessibility, and modern design practices.
 
-> 💡 Explore the live version: [themelon.live](https://themelon.live)
+> 💡 Explore the live version: [themelon.tech](https://themelon.tech)
 
 ---
 
@@ -73,8 +73,8 @@ This portfolio is intended for personal use. You are free to draw inspiration fr
 
 Want to reach out or collaborate?
 
-* 📧 [hi@themelon.live](mailto:hi@themelon.live)
-* 🌐 [themelon.live](https://themelon.live)
+* 📧 [hi@themelon.live](mailto:hi@themelon.tech)
+* 🌐 [themelon.live](https://themelon.tech)
 * 💼 Message me for my LinkedIn and/or resume!
 
 ---
