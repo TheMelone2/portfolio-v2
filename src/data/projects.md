@@ -8,7 +8,7 @@ title: Projects
     - label: GitHub
       url: https://github.com/TheMelone2/portfolio-v2
     - label: View Live
-      url: https://themelon.live
+      url: https://themelon.tech
 
 - title: BlockShift
   description: A texture pack converter for Minecraft, allowing users to convert old texturepacks into newer verions and apply custom textures easily.
@@ -17,7 +17,7 @@ title: Projects
     - label: GitHub
       url: https://github.com/TheMelone2/blockshift
     - label: View Live
-      url: https://bshift.themelon.live/
+      url: https://bshift.themelon.tech/
 
 - title: Rottenmelk Portfolio
   description: Portfolio for author Valentina Rojas, designed in a gothic style.

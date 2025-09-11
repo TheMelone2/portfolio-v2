@@ -73,8 +73,8 @@ This portfolio is intended for personal use. You are free to draw inspiration fr
 
 Want to reach out or collaborate?
 
-* 📧 [hi@themelon.live](mailto:hi@themelon.tech)
-* 🌐 [themelon.live](https://themelon.tech)
+* 📧 [hi@themelon.tech](mailto:hi@themelon.tech)
+* 🌐 [themelon.tech](https://themelon.tech)
 * 💼 Message me for my LinkedIn and/or resume!
 
 ---

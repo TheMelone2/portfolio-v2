@@ -1,17 +1,17 @@
 ---
 work:
   - company: EasySystems
-    logo: /easysystems-logo.png
+    logo: /easysystems-logo.webp
     role: Product Manager & Web Developer
     dates: Dec 2022 – Present
     location: Remote
   - company: EasySystems
-    logo: /easysystems-logo.png
+    logo: /easysystems-logo.webp
     role: Community Manager
     dates: Dec 2022 – Nov 2023
     location: Remote
   - company: MDC Power GmbH (Mercedes-Benz AG)
-    logo: /mdc-logo.png
+    logo: /mdc-logo.webp
     role: Technical Internship - Engine Assembly & QC
     dates: Mar 2023 - Mar 2023
     location: Kölleda (On-Site)
@@ -22,7 +22,7 @@ work:
     location: Remote
     volunteering: true
   - company: Freiwillige Feuerwehr (Volunteer Fire Department)
-    logo: /feuerwehr-logo.png
+    logo: /feuerwehr-logo.webp
     role: Firefighter
     dates: 2017 – Present
     location: Local Fire Department
