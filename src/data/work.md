@@ -16,7 +16,12 @@ work:
     dates: Mar 2023 - Mar 2023
     location: Kölleda (On-Site)
   - company: Discord
-    role: Moderator & Lab Assistant (Product Feedback)
+    role: Online Content Moderator (Activities)
+    dates: Apr 2025 – Present
+    brandIcon: discord
+    location: Remote
+  - company: Discord
+    role: Lab Assistant (Product Feedback)
     dates: 2022 – Present
     brandIcon: discord
     location: Remote
