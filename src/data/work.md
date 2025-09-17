@@ -17,7 +17,7 @@ work:
     location: Kölleda (On-Site)
   - company: Discord
     role: Online Content Moderator (Activities)
-    dates: Apr 2025 – Present
+    dates: Apr 2025 – Sep 2025
     brandIcon: discord
     location: Remote
   - company: Discord
