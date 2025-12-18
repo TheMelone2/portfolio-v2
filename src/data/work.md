@@ -3,7 +3,7 @@ work:
   - company: EasySystems
     logo: /easysystems-logo.webp
     role: Product Manager & Web Developer
-    dates: Dec 2022 – Present
+    dates: Dec 2022 – Dec 2025
     location: Remote
   - company: EasySystems
     logo: /easysystems-logo.webp
